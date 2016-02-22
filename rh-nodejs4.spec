@@ -13,7 +13,7 @@
 Summary: %scl Software Collection
 Name: %scl_name
 Version: 2.2
-Release: 3%{?dist}
+Release: 4%{?dist}
 
 Source1: macros.nodejs
 Source2: nodejs.attr
@@ -169,6 +169,9 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Fri Feb 12 2016 Zuzana Svetlikova <zsvetlik@redhat.com> - 2.2-4
+- Add prefixes to provides and requires
+
 * Wed Feb 10 2016 Tomas Hrcka <thrcka@redhat.com> - 2.2-3
 - Add missing rh- prefix
 

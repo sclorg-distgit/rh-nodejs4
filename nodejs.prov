@@ -38,7 +38,7 @@ for path in paths:
         fh.close()
 
         if 'name' in metadata and not ('private' in metadata and metadata['private']):
-            print 'nodejs4-npm(' + metadata['name'] + ')',
+            print 'rh-nodejs4-npm(' + metadata['name'] + ')',
 
             if 'version' in metadata:
                 print '= ' + metadata['version']

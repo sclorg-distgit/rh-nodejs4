@@ -58,7 +58,7 @@ def main():
         fh.close()
 
         #write out the node.js interpreter dependency
-        req = 'nodejs4-nodejs(engine)'
+        req = 'rh-nodejs4-nodejs(engine)'
 
         if 'engines' in metadata and isinstance(metadata['engines'], dict) \
                                             and 'node' in metadata['engines']:
@@ -69,14 +69,14 @@ def main():
         if 'dependencies' in metadata:
             if isinstance(metadata['dependencies'], dict):
                 for name, version in metadata['dependencies'].iteritems():
-                    req = 'nodejs4-npm(' + name + ')'
+                    req = 'rh-nodejs4-npm(' + name + ')'
                     deps += process_dep(req, version)
             elif isinstance(metadata['dependencies'], list):
                 for name in metadata['dependencies']:
-                    req = 'nodejs4-npm(' + name + ')'
+                    req = 'rh-nodejs4-npm(' + name + ')'
                     deps.append(req)
             elif isinstance(metadata['dependencies'], basestring):
-                req = 'nodejs4-npm(' + metadata['dependencies'] + ')'
+                req = 'rh-nodejs4-npm(' + metadata['dependencies'] + ')'
                 deps.append(req)
             else:
                 raise TypeError('invalid package.json: dependencies not a valid type')
