@@ -1,0 +1,3 @@
+%__nodejs4_provides  %{_rpmconfigdir}/nodejs4.prov
+%__nodejs4_requires  %{_rpmconfigdir}/nodejs4.req
+%__nodejs4_path  /usr/lib.*/node_modules/.*/package\\.json$
