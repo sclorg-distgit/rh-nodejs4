@@ -13,7 +13,7 @@
 Summary: %scl Software Collection
 Name: %scl_name
 Version: 2.2
-Release: 9%{?dist}
+Release: 9.sc1%{?dist}
 
 Source1: macros.nodejs
 Source2: nodejs.attr
@@ -98,7 +98,7 @@ export MANPATH=%{_mandir}:\$MANPATH
 # new nodejs bundles v8
 # we use dts-4 in rhel6 now because gcc/g++ from official repositories
 # are too old for new Node/v8 (and node-gyp)
-. scl_source enable devtoolset-4
+#. scl_source enable devtoolset-4
 EOF
 
 # install rpm magic
