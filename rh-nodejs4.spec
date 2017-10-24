@@ -5,15 +5,15 @@
 %global scl %{scl_name_prefix}%{scl_name_base}%{scl_name_version}
 
 %scl_package %scl
-%global install_scl 0
+%global install_scl 1
 
 # do not produce empty debuginfo package
 %global debug_package %{nil}
 
 Summary: %scl Software Collection
 Name: %scl_name
-Version: 2.2
-Release: 4%{?dist}
+Version: 2.4
+Release: 3%{?dist}
 
 Source1: macros.nodejs
 Source2: nodejs.attr
@@ -145,6 +145,9 @@ mkdir -p %{buildroot}%{_libdir}/pkgconfig
 mkdir -p %{buildroot}%{_mandir}/man7/
 install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 
+# own license dir (RHBZ#1420294)
+mkdir -p %{buildroot}%{_datadir}/licenses/
+
 %files
 
 %files -f filesystem runtime
@@ -153,8 +156,10 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 %license LICENSE
 %scl_files
 %dir %{_scl_root}%{python_sitelib}
-%dir %{_scl_root}/usr/lib/python2.7
+#%%dir %{_scl_root}/usr/lib/python2.7
+%dir %{_prefix}/lib/python2.*
 %dir %{_libdir}/pkgconfig
+%dir %{_datadir}/licenses
 %{_datadir}/node/multiver_modules
 %{_mandir}/man7/%{scl_name}.*
 %dir %{_datadir}/node
@@ -169,6 +174,15 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Wed Sep 06 2017 Zuzana Svetlikova <zsvetlik@redhat.com> - 2.4-3
+- Resolves: RHBZ#1316626
+
+* Thu Feb 16 2017 Zuzana Svetlikova <zsvetlik@redhat.com> - 2.2-6
+- Own %%{_licensedir}
+
+* Thu Mar 03 2016 Zuzana Svetlikova <zsvetlik@redhat.com> - 2.2-5
+- Enable installing whole scl (RBZ#1314093)
+
 * Fri Feb 12 2016 Zuzana Svetlikova <zsvetlik@redhat.com> - 2.2-4
 - Add prefixes to provides and requires
 
