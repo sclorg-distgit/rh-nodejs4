@@ -12,8 +12,8 @@
 
 Summary: %scl Software Collection
 Name: %scl_name
-Version: 2.2
-Release: 11%{?dist}
+Version: 2.4
+Release: 4%{?dist}
 
 Source1: macros.nodejs
 Source2: nodejs.attr
@@ -95,8 +95,8 @@ export LD_LIBRARY_PATH=%{_libdir}\${LD_LIBRARY_PATH:+:\${LD_LIBRARY_PATH}}
 export PYTHONPATH=%{_scl_root}%{python_sitelib}\${PYTHONPATH:+:\${PYTHONPATH}}
 export MANPATH=%{_mandir}:\$MANPATH
 # enable devtoolset if it's installed (RHBZ#1362169)
-if scl -l | grep devtoolset-4 &> /dev/null; then
-. scl_source enable devtoolset-4
+if scl -l | grep devtoolset-6 &> /dev/null; then
+. scl_source enable devtoolset-6
 fi
 EOF
 
@@ -156,7 +156,8 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 %license LICENSE
 %scl_files
 %dir %{_scl_root}%{python_sitelib}
-%dir %{_scl_root}/usr/lib/python2.6
+#%dir %{_scl_root}/usr/lib/python2.6
+#%dir %{_prefix}/lib/python2.*
 %dir %{_libdir}/pkgconfig
 %{_datadir}/node/multiver_modules
 %{_mandir}/man7/%{scl_name}.*
@@ -172,6 +173,13 @@ install -m 644 %{scl_name}.7 %{buildroot}%{_mandir}/man7/%{scl_name}.7
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 
 %changelog
+* Tue Aug 01 2017 Zuzana Svetlikova <zsvetlik@redhat.com> - 2.4-4
+- Resolves: RHBZ#1479519
+- own licensedir if present
+
+* Thu Feb 16 2017 Zuzana Svetlikova <zsvetlik@redhat.com> - 2.2-12
+- Update to dts-6 (RHBZ#1418385)
+
 * Tue Jan 31 2017 Zuzana Svetlikova <zsvetlik@redhat.com> - 2.2-11
 - Enable dts only if it's installed (for node-gyp, but not for nodejs)
 
